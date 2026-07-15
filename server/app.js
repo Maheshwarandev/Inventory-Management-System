@@ -15,6 +15,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Simple test route
+app.get('/', (req, res) => {
+    res.json({ 
+        message: 'Welcome to the IMS Pro API!',
+        status: 'online',
+        version: '1.0.0',
+        documentation: 'https://github.com/Maheshwarandev/Inventory-Management-System'
+    });
+});
+
 app.get('/api/test', (req, res) => {
     res.json({ message: 'IMS API is running!' });
 });
