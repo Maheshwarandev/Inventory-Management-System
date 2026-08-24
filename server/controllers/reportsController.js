@@ -34,14 +34,14 @@ exports.getProfitReport = async (req, res) => {
                 SUM(
                     SELECT COALESCE(SUM(poi.quantity * poi.unit_cost), 0)
                     FROM purchase_order_items poi
-                    WHERE poi.purchase_id IN (
+                    WHERE poi.purchase_order_id IN (
                         SELECT id FROM purchase_orders WHERE created_at <= so.created_at
                     )
                 ) as cost_of_goods,
                 SUM(so.total_amount) - COALESCE(
                     SELECT COALESCE(SUM(poi.quantity * poi.unit_cost), 0)
                     FROM purchase_order_items poi
-                    WHERE poi.purchase_id IN (
+                    WHERE poi.purchase_order_id IN (
                         SELECT id FROM purchase_orders WHERE created_at <= so.created_at
                     ), 0
                 ) as gross_profit

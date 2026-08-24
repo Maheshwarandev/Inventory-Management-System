@@ -123,9 +123,10 @@ CREATE TABLE IF NOT EXISTS payments (
 
 -- Seed Data
 
--- 1. Default Admin User (Password: admin123)
+-- 1. Default Users (Admin: admin123, Employee: employee123)
 INSERT IGNORE INTO users (id, name, email, password, role) VALUES 
-(1, 'Admin User', 'admin@ims.com', '$2b$10$lxyKBV280jcr.1/lDSi9..L2QagWc/9jSoOyztUPQVolfDkaxEZo2', 'admin');
+(1, 'Admin User', 'admin@ims.com', '$2b$10$lxyKBV280jcr.1/lDSi9..L2QagWc/9jSoOyztUPQVolfDkaxEZo2', 'admin'),
+(2, 'Employee User', 'employee@ims.com', '$2b$10$fGSP7OP0KbS5.qG33Oidwu21/jDMH6SblTopmwpn7Vzb7HpZWH66G', 'employee');
 
 -- 2. Seed Categories
 INSERT IGNORE INTO categories (id, name, description) VALUES 

@@ -30,7 +30,7 @@ exports.getSale = async (req, res) => {
             SELECT si.*, pr.name as product_name 
             FROM sales_order_items si
             JOIN products pr ON si.product_id = pr.id
-            WHERE si.sale_id = ?
+            WHERE si.sales_order_id = ?
         `, [req.params.id]);
 
         const sale = saleRows[0];
@@ -61,7 +61,7 @@ exports.createSale = async (req, res) => {
 
         for (const item of items) {
             await connection.query(
-                'INSERT INTO sales_order_items (sale_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)',
+                'INSERT INTO sales_order_items (sales_order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)',
                 [saleId, item.product_id, item.quantity, item.unit_price]
             );
 

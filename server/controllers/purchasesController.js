@@ -28,7 +28,7 @@ exports.getPurchase = async (req, res) => {
             SELECT pi.*, pr.name as product_name 
             FROM purchase_order_items pi
             JOIN products pr ON pi.product_id = pr.id
-            WHERE pi.purchase_id = ?
+            WHERE pi.purchase_order_id = ?
         `, [req.params.id]);
 
         const purchase = purchaseRows[0];
@@ -58,7 +58,7 @@ exports.createPurchase = async (req, res) => {
 
         for (const item of items) {
             await connection.query(
-                'INSERT INTO purchase_order_items (purchase_id, product_id, quantity, unit_cost) VALUES (?, ?, ?, ?)',
+                'INSERT INTO purchase_order_items (purchase_order_id, product_id, quantity, unit_cost) VALUES (?, ?, ?, ?)',
                 [purchaseId, item.product_id, item.quantity, item.unit_cost]
             );
 
